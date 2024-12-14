@@ -38,5 +38,4 @@ resource "aws_wafv2_web_acl" "misconfig_acl" {
     metric_name               = "misconfig-ACL"
   }
 
-  capacity = 2
 }

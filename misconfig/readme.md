@@ -1,13 +1,18 @@
 # Terraform Installation
-- Linux/MacOS
+- Linux
 ```
-sudo apt-get update -y
-sudo apt-get install -y unzip
+wget https://releases.hashicorp.com/terraform/$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r .current_version)/terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r .current_version)_linux_amd64.zip
 wget https://releases.hashicorp.com/terraform/$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r .current_version)/terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r .current_version)_linux_amd64.zip
 unzip terraform_*.zip
 sudo mv terraform /usr/local/bin/
 terraform --version
 ```
+- MacOS
+```
+brew install terraform
+terraform --version
+```
+
 - Windows
 Visit this URL : https://www.terraform.io/
 and run this command

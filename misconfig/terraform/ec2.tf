@@ -59,21 +59,37 @@ resource "aws_iam_instance_profile" "misconfig-vulnEC2Profile" {
     role = "${aws_iam_role.misconfig-vulnEC2Role.name}"
 }
 
+resource "tls_private_key" "misconfig-EC2KeyPair" {
+    algorithm = "RSA"
+    rsa_bits = 4096
+}
+
+resource "aws_key_pair" "misconfig-EC2KeyPair" {
+    key_name = "misconfig-EC2KeyPair"
+    public_key = "${tls_private_key.misconfig-EC2KeyPair.public_key_openssh}"
+    provisioner "local-exec" {
+    command = <<-EOT
+      echo "${tls_private_key.misconfig-EC2KeyPair.private_key_pem}" > misconfig-EC2KeyPair.pem
+    EOT
+  }
+}
+
+
 # web-ec2 security groups
 resource "aws_security_group" "misconfig-ALBSecurityGroup" {
     name = "misconfig-ALBsecurityGroup"
-    vpc_id = "${aws_vpc.misconfig-vpc.id}"
+    vpc_id = "${aws_vpc.misconfig_vpc.id}"
 
     ingress {
         from_port = 80
         to_port = 80
-        protocol = "HTTP"
+        protocol = "TCP"
         cidr_blocks = ["0.0.0.0/0"]
     }
     ingress {
         from_port = 443
         to_port = 443
-        protocol = "HTTPS"
+        protocol = "TCP"
         cidr_blocks = ["0.0.0.0/0"]
     }
     egress {
@@ -85,7 +101,7 @@ resource "aws_security_group" "misconfig-ALBSecurityGroup" {
 }
 resource "aws_security_group" "misconfig-EC2SecurityGroup" {
     name = "misconfig-EC2SecurityGroup"
-    vpc_id = "${aws_vpc.misconfig-vpc.id}"
+    vpc_id = "${aws_vpc.misconfig_vpc.id}"
 
     ingress {
         from_port = 5000
@@ -96,7 +112,7 @@ resource "aws_security_group" "misconfig-EC2SecurityGroup" {
     ingress {
         from_port = 80
         to_port = 80
-        protocol = "HTTP"
+        protocol = "TCP"
         cidr_blocks = ["0.0.0.0/0"]
     }
     ingress {
@@ -114,7 +130,7 @@ resource "aws_security_group" "misconfig-EC2SecurityGroup" {
     egress {
         from_port = 80
         to_port = 80
-        protocol = "HTTP"
+        protocol = "TCP"
         cidr_blocks = ["0.0.0.0/0"]
     }
     egress {
@@ -123,11 +139,6 @@ resource "aws_security_group" "misconfig-EC2SecurityGroup" {
         protocol = "TCP"
         cidr_blocks = ["0.0.0.0/0"]
     }
-}
-# web-ec2 ssh key pair
-resource "aws_key_pair" "misconfig-EC2KeyPair" {
-    key_name = "misconfig-EC2KeyPair"
-    public_key = "${file("${path.module}/misconfig-EC2KeyPair.pub")}"
 }
 
 # web-ec2 instance
@@ -143,7 +154,7 @@ resource "aws_instance" "misconfig_ec2" {
     "${aws_security_group.misconfig-ALBSecurityGroup.id}",
     "${aws_security_group.misconfig-EC2SecurityGroup.id}"
   ]
-  key_name               = "${aws_key_pair.misconfig-EC2KeyPair.name}"
+  key_name               = "${aws_key_pair.misconfig-EC2KeyPair.key_name}"
   
   # IMDS settings
   metadata_options {
