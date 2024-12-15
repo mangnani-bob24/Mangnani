@@ -140,6 +140,8 @@ cat <file_path>
 
 ## **Terminate Terraform**
 ```bash
-# Terraform으로 생성된 모든 리소스 확인 요청 없이 삭제
+# Terraform 생성된 모든 리소스 리스트
+terraform state list
+# Terraform 생성된 모든 리소스 확인 요청 없이 삭제
 terraform destroy -auto-approve
 ```
