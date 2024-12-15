@@ -102,7 +102,8 @@ $ aws configure
 ## **Clone the Git Repository**
 ```bash
 git clone https://github.com/mangnani-bob24/mang_wargame.git
-cd mang_wargame/API
+cd mang_wargame
+cd API
 ```
 
 ## **Start Terraform**
