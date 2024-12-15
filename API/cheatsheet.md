@@ -49,3 +49,94 @@ choco install terraform -y
 terraform --version
 ```
 
+## **Install AWS CLI**
+
+- Linux
+```bash
+# 1. AWS CLI 설치 패키지 다운로드
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+# 2. 다운로드한 파일 압축 해제
+unzip awscliv2.zip
+
+# 3. AWS CLI 설치 실행
+sudo ./aws/install
+
+# 4. 설치 확인
+aws --version
+```
+
+- MacOS
+```bash
+# 1. AWS CLI 설치 패키지 다운로드
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+
+# 2. 설치 실행
+sudo installer -pkg AWSCLIV2.pkg -target /
+
+# 3. 설치 확인
+aws --version
+```
+
+- Windows
+```bash
+# 1. AWS CLI 설치 파일 다운로드
+Invoke-WebRequest -Uri "https://awscli.amazonaws.com/AWSCLIV2.msi" -OutFile "AWSCLIV2.msi"
+
+# 2. AWS CLI 설치 실행
+Start-Process msiexec.exe -ArgumentList '/i AWSCLIV2.msi /quiet' -Wait
+
+# 3. 설치 확인
+aws --version
+```
+
+## **configure aws CLI**
+```bash
+$ aws configure
+# AWS Access Key ID: <Your Access Key>
+# AWS Secret Access Key: <Your Secret Key>
+# Default region name: <ap-northeast-1>
+# Default output format: json
+```
+
+## **Start Terraform**
+```bash
+# Terraform 초기화
+terraform init
+# Terraform 계획 확인
+terraform plan
+# Terraform 실행 계획 자동 승인 및 적용
+terraform apply -auto-approve
+```
+
+## **Explore API Gateway**
+```bash
+# Example: 사용 가능한 API 엔드포인트 가져오기
+curl -X GET https://your-api-gateway-url/prod/<path>
+```
+
+## **Access S3 Bucket and Verify Data**
+```bash
+# 특정 버킷의 내용 확인
+aws s3 ls s3://<bucket-name>
+# 파일 다운로드
+aws s3 cp s3://<bucket-name>/<file_name> .
+```
+
+## **Access the EC2 Instance**
+```bash
+# SSM Session 시작
+aws ssm start-session --target <EC2-INSTANCE-ID>
+# 파일 확인
+cat <file_path>
+```
+
+## **Terminate Terraform**
+```bash
+# Terraform으로 생성된 모든 리소스 확인 요청 없이 삭제
+terraform destroy -auto-approve
+```
+
+
+
+
