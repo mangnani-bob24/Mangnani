@@ -99,6 +99,12 @@ $ aws configure
 # Default output format: json
 ```
 
+## **Clone the Git Repository**
+```bash
+git clone https://github.com/mangnani-bob24/mang_wargame.git
+cd mang_wargame/API
+```
+
 ## **Start Terraform**
 ```bash
 # Terraform 초기화
