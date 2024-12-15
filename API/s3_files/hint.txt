@@ -1,0 +1,2 @@
+# File contents for S3 upload
+hint_txt_content = """To access the final flag, check the logs at /var/log/transfer.log on the EC2 instance."""
