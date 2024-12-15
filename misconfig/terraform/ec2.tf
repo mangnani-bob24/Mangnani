@@ -1,19 +1,14 @@
 # web-ec2 role
-resource "aws_iam_role" "misconfig-vulnEC2Role" {
-    name = "misconfig-vulnEC2Role"
+resource "aws_iam_role" "misconfig_vulnEC2Role_terraform" {
+    name = "misconfig_vulnEC2Role_terraform"
     assume_role_policy = <<ARP
     {
         "Version": "2012-10-17",
         "Statement": [
             {
-                "Effect": "Deny",
+                "Effect": "Allow",
                 "Action": ["*"],
-                "Resource": ["*"],
-                "Condition": {
-                    "DateLessThan": {
-                        "aws:TokenIssueTime": "2024-12-01T00:00:00Z"
-                    }
-                }
+                "Resource": "*"
             }
         ]
     }
@@ -21,8 +16,8 @@ resource "aws_iam_role" "misconfig-vulnEC2Role" {
 }
 
 # web-ec2 policy for web-ec2 role
-resource "aws_iam_policy" "misconfig-s3policy" {
-    name = "misconfig-s3policy"
+resource "aws_iam_policy" "misconfig_s3policy_terraform" {
+    name = "misconfig_s3policy_terraform"
     policy = <<POLICY
     {
         "Version": "2012-10-17",
@@ -48,59 +43,36 @@ resource "aws_iam_policy" "misconfig-s3policy" {
 }
 
 # attach web-ec2 policy to web-ec2 role
-resource "aws_iam_role_policy_attachment" "misconfig-vulnEC2Role-policy-attachment" {
-    role = "${aws_iam_role.misconfig-vulnEC2Role.name}"
-    policy_arn = "${aws_iam_policy.misconfig-s3policy.arn}" 
+resource "aws_iam_role_policy_attachment" "misconfig_vulnEC2Role_policy_attachment_terraform" {
+    role = "${aws_iam_role.misconfig_vulnEC2Role_terraform.name}"
+    policy_arn = "${aws_iam_policy.misconfig_s3policy_terraform.arn}" 
 }
 
 # profile web-ec2 instance profile
-resource "aws_iam_instance_profile" "misconfig-vulnEC2Profile" {
-    name = "misconfig-vulnEC2Profile"
-    role = "${aws_iam_role.misconfig-vulnEC2Role.name}"
+resource "aws_iam_instance_profile" "misconfig_vulnEC2Profile_terraform" {
+    name = "misconfig_vulnEC2Profile_terraform"
+    role = "${aws_iam_role.misconfig_vulnEC2Role_terraform.name}"
 }
 
-resource "tls_private_key" "misconfig-EC2KeyPair" {
+resource "tls_private_key" "misconfig_EC2KeyPair_terraform" {
     algorithm = "RSA"
     rsa_bits = 4096
 }
 
-resource "aws_key_pair" "misconfig-EC2KeyPair" {
-    key_name = "misconfig-EC2KeyPair"
-    public_key = "${tls_private_key.misconfig-EC2KeyPair.public_key_openssh}"
+resource "aws_key_pair" "misconfig_EC2KeyPair_terraform" {
+    key_name = "misconfig_EC2KeyPair_terraform"
+    public_key = "${tls_private_key.misconfig_EC2KeyPair_terraform.public_key_openssh}"
     provisioner "local-exec" {
     command = <<-EOT
-      echo "${tls_private_key.misconfig-EC2KeyPair.private_key_pem}" > misconfig-EC2KeyPair.pem
+      echo "${tls_private_key.misconfig_EC2KeyPair_terraform.private_key_pem}" > misconfig_EC2KeyPair_terraform.pem
     EOT
   }
 }
 
 
-# web-ec2 security groups
-resource "aws_security_group" "misconfig-ALBSecurityGroup" {
-    name = "misconfig-ALBsecurityGroup"
-    vpc_id = "${aws_vpc.misconfig_vpc.id}"
 
-    ingress {
-        from_port = 80
-        to_port = 80
-        protocol = "TCP"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-    ingress {
-        from_port = 443
-        to_port = 443
-        protocol = "TCP"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-    egress {
-        from_port = 0
-        to_port = 0
-        protocol = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-}
-resource "aws_security_group" "misconfig-EC2SecurityGroup" {
-    name = "misconfig-EC2SecurityGroup"
+resource "aws_security_group" "misconfig_EC2SecurityGroup_terraform" {
+    name = "misconfig_EC2SecurityGroup_terraform"
     vpc_id = "${aws_vpc.misconfig_vpc.id}"
 
     ingress {
@@ -118,7 +90,7 @@ resource "aws_security_group" "misconfig-EC2SecurityGroup" {
     ingress {
         from_port = 22
         to_port = 22
-        protocol = "SSH"
+        protocol = "TCP"
         cidr_blocks = ["0.0.0.0/0"]
     }
     egress {
@@ -145,16 +117,16 @@ resource "aws_security_group" "misconfig-EC2SecurityGroup" {
 resource "aws_instance" "misconfig_ec2" {
   ami                    = "ami-0b2cd2a95639e0e5b"
   instance_type          = "t2.micro"
-  iam_instance_profile   = "${aws_iam_instance_profile.misconfig-vulnEC2Profile.name}"
+  iam_instance_profile   = "${aws_iam_instance_profile.misconfig_vulnEC2Profile_terraform.name}"
   subnet_id              = "${aws_subnet.misconfig_subnet.id}"
   associate_public_ip_address = true
 
   # security groups
   vpc_security_group_ids = [
-    "${aws_security_group.misconfig-ALBSecurityGroup.id}",
-    "${aws_security_group.misconfig-EC2SecurityGroup.id}"
+    "${aws_security_group.misconfig_ALBSecurityGroup_terraform.id}",
+    "${aws_security_group.misconfig_EC2SecurityGroup_terraform.id}"
   ]
-  key_name               = "${aws_key_pair.misconfig-EC2KeyPair.key_name}"
+  key_name               = "${aws_key_pair.misconfig_EC2KeyPair_terraform.key_name}"
   
   # IMDS settings
   metadata_options {
