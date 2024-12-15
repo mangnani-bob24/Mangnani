@@ -1,8 +1,8 @@
 # **Scenario: API**
 
-**Size**: Medium
-**Difficulty**: Moderate
-**Command**: 
+- **Size**: Medium
+- **Difficulty**: Moderate
+- **Command**: 
 
 ---
 
