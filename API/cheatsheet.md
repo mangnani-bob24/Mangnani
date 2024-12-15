@@ -90,7 +90,7 @@ Start-Process msiexec.exe -ArgumentList '/i AWSCLIV2.msi /quiet' -Wait
 aws --version
 ```
 
-## **configure aws CLI**
+## **Configure aws CLI**
 ```bash
 $ aws configure
 # AWS Access Key ID: <Your Access Key>
@@ -142,7 +142,3 @@ cat <file_path>
 # Terraform으로 생성된 모든 리소스 확인 요청 없이 삭제
 terraform destroy -auto-approve
 ```
-
-
-
-
