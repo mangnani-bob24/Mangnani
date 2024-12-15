@@ -4,4 +4,4 @@
 **Difficulty**: Moderate
 **Command**: 
 
-## **Scenario Resources**
+## **Scenario: aws_api_exploit_wargame**
