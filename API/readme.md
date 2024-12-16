@@ -94,7 +94,7 @@
       aws --version
       ```
       
-  - **Configure aws CLI**
+  - **Configure AWS CLI**
     ```bash
     $ aws configure
       # AWS Access Key ID: <Your Access Key>
