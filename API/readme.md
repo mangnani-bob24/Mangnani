@@ -1,7 +1,7 @@
 # **Scenario: API**
 
 - **Size**: Medium
-- **Difficulty**: Moderate
+- **Difficulty**: Easy
 - **Command**: 
 
 ## **Scenario Resources**
