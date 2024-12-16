@@ -4,26 +4,8 @@
 - **Difficulty**: Easy
 - **Command**:
   
-   ```bash
-   $ aws configure
-   # AWS Access Key ID: <Your Access Key>
-   # AWS Secret Access Key: <Your Secret Key>
-   # Default region name: <ap-northeast-1>
-   # Default output format: json
-   ```
-   ```bash
-   $ git clone https://github.com/mangnani-bob24/mang_wargame.git
-     cd mang_wargame
-     cd API
-   ```
-   ```bash
-   # Terraform 초기화
-   terraform init
-   # Terraform 계획 확인
-   terraform plan
-   # Terraform 실행 계획 자동 승인 및 적용
-   terraform apply -auto-approve
-   ```
+  **Terraform Installation**
+    
    
 ## **Scenario Resources**
 
