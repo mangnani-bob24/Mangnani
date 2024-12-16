@@ -4,7 +4,7 @@
 - **Difficulty**: Easy
 - **Command**:
   
-  ***Terraform Installation***
+  - **Terraform Installation**
   
     
    
