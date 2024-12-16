@@ -1,3 +1,0 @@
-Congratulations!
-You have solved the first challenge of the CSA Threat Classification, "Misconfiguration and Inadequate Change Control."
-The flag is "cg-coNf1G".
