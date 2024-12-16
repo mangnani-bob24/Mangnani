@@ -90,7 +90,7 @@ Start-Process msiexec.exe -ArgumentList '/i AWSCLIV2.msi /quiet' -Wait
 aws --version
 ```
 
-## **Configure aws CLI**
+## **Configure AWS CLI**
 ```bash
 $ aws configure
 # AWS Access Key ID: <Your Access Key>
