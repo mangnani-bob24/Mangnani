@@ -19,5 +19,4 @@ aws s3 ls [bucket name]
 
 aws s3 cp s3://[bucket name]/[file name] ./[file name]
 
-
 ```
