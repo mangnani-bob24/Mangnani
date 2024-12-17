@@ -1,5 +1,5 @@
-# Mangnani WarGame 🐴
-** Mangnani WarGame** is an essential educational tool that allows users to practically experience various risk scenarios that could arise in a cloud environment.**
+# Mangnani WarGame 🐴
+**Mangnani WarGame** is an essential educational tool that allows users to practically experience various risk scenarios that could arise in a cloud environment.**
 By referencing the risk scenarios outlined in the guidelines, users can anticipate potential threats and prepare response strategies in advance. This helps in thoroughly preparing for security incidents and enhancing awareness of potential threats that could occur in real-world environments.
 
 Specifically, Mangnani WarGame does more than just describe risk scenarios; it enables users to actively experience and respond to scenarios in real-time, which is crucial in learning how to prevent and handle security breaches. By visually presenting these scenarios, Mangnani WarGame plays a key role in helping security professionals clearly understand security risks and recognize potential threats that might occur in actual situations.
