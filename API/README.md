@@ -155,7 +155,21 @@
 - Valid AWS credentials must be configured in the AWS CLI.
 
 ## **Scenario Goal(s)**
-- Retrieve the flag from within the EC2 instance.
+- **Explore the API and S3 to retrieve the final flag from the EC2 server's log file.**
+- **Steps**
+   1. **AWS Access Configuration**  
+   - Set up valid AWS credentials to prepare for resource access.  
+
+ 2. **API Endpoint Exploration**  
+   - Explore the base path and vulnerable endpoints to gather hints.  
+
+ 3. **File Retrieval**  
+   - Download critical files from the S3 bucket and extract additional information.  
+
+ 4. **External Server Access**  
+   - Connect to the EC2 server and analyze the log file to retrieve the final flag.  
+- **Final Goal**  
+  - **Retrieve the final flag from the EC2 server's log file.**  
 
 ## **Summary**
 The attacker exploits security vulnerabilities in the API Gateway and S3 bucket to obtain sensitive data and accesses the EC2 instance to retrieve the flag.
