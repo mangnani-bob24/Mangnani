@@ -32,7 +32,7 @@ You are provided with the EC2 PublicIP and you can access to the "http://[EC2_PU
 
 ## Scenario Story
 
-<img width="686" alt="image" src="https://github.com/user-attachments/assets/c25b95b7-0598-49ed-a55b-560393f87786" />
+<img width="767" alt="image" src="https://github.com/user-attachments/assets/fd23e1bc-daf6-4812-9fa7-7092eb33179a" />
 
 
 1. **Access the web application via EC2 Public IP:**
