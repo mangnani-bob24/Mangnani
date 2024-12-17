@@ -32,6 +32,9 @@ You are provided with the EC2 PublicIP and you can access to the "http://[EC2_PU
 
 ## Scenario Story
 
+<img width="686" alt="image" src="https://github.com/user-attachments/assets/c25b95b7-0598-49ed-a55b-560393f87786" />
+
+
 1. **Access the web application via EC2 Public IP:**
 The public IP of the EC2 instance is provided. You can access the web application at http://[EC2_PUBLIC_IP]:5000/. This web application has an SSRF vulnerability through the /fetch endpoint that attempts to connect to the metadata service.
 2. **Discover the URL to access the metadata server:**
@@ -48,6 +51,8 @@ Review the policies that are assigned to the elevated IAM role to verify permiss
 Check the permissions for listing S3 buckets, and list the objects in the publicly accessible S3 bucket.
 8. **Download the flag.txt file and view it locally:**
 Retrieve the flag.txt file from the S3 bucket and download it to view the flag.
+
+
 
 ## Scenario Goal(s)
 Due to incorrect WAF configuration, exploit an SSRF vulnerability to access the IMDSv1 endpoint, capture IAM credentials, and then download the flag file (flag.txt) stored in an S3 Bucket.
