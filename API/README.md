@@ -158,16 +158,16 @@
 - **Explore the API and S3 to retrieve the final flag from the EC2 server's log file.**
 - **Steps**
    1. **AWS Access Configuration**  
-   - Set up valid AWS credentials to prepare for resource access.  
+     - Set up valid AWS credentials to prepare for resource access.  
 
- 2. **API Endpoint Exploration**  
-   - Explore the base path and vulnerable endpoints to gather hints.  
+   2. **API Endpoint Exploration**  
+     - Explore the base path and vulnerable endpoints to gather hints.  
 
- 3. **File Retrieval**  
-   - Download critical files from the S3 bucket and extract additional information.  
+   3. **File Retrieval**  
+     - Download critical files from the S3 bucket and extract additional information.  
 
- 4. **External Server Access**  
-   - Connect to the EC2 server and analyze the log file to retrieve the final flag.  
+   4. **External Server Access**  
+     - Connect to the EC2 server and analyze the log file to retrieve the final flag.  
 - **Final Goal**  
   - **Retrieve the final flag from the EC2 server's log file.**  
 
