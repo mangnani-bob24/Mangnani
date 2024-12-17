@@ -14,7 +14,25 @@ here is our guideline.<br>
 By visiting this link, you can find detailed security measures and checklists related to the scenarios used in the WarGame. Have a great time! 🤩
 
 
+# How to Play Mangnani Wargame ❔
+
+## clone
+```
+git clone "asdf"
+```
+Go to the directory of the **scenario** you want to play.
+
+```
+cd [scenario dir/terraform]
+terraform init
+terraform plan
+terraform apply
+
+```
+
 ## Terraform Installation
+This is an additional explanation for installing Terraform. Please refer to it.
+
 - Linux
 ```
 wget https://releases.hashicorp.com/terraform/$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r .current_version)/terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r .current_version)_linux_amd64.zip
