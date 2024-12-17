@@ -7,8 +7,11 @@
 
 **Command:**
 
-- creation: `$ terraform init; terraform apply`
-- destruction: `$ terraform destroy`
+- creation:
+    - `$ terraform init`
+    - `$ terraform apply`
+- destruction:
+    - `$ terraform destroy`
 
 ## Scenario Resources
 
@@ -48,3 +51,4 @@ Retrieve the flag.txt file from the S3 bucket and download it to view the flag.
 
 ## Scenario Goal(s)
 Due to incorrect WAF configuration, exploit an SSRF vulnerability to access the IMDSv1 endpoint, capture IAM credentials, and then download the flag file (flag.txt) stored in an S3 Bucket.
+
