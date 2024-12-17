@@ -18,7 +18,7 @@ By visiting this link, you can find detailed security measures and checklists re
 
 ## clone
 ```
-git clone "asdf"
+git clone "https://github.com/mangnani-bob24/Mangnani.git"
 ```
 Go to the directory of the **scenario** you want to play.
 
